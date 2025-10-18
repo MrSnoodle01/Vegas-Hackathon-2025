@@ -10,7 +10,6 @@ public class Hacker : MonoBehaviour
     private string position;
     private EnemySpawner enemySpawner;
 
-
     private void Awake()
     {
         computer = GameObject.FindGameObjectWithTag("Computer").GetComponent<Computer>();
@@ -57,8 +56,21 @@ public class Hacker : MonoBehaviour
     {
         while(computer.health > 0)
         {
-            yield return new WaitForSeconds(3);
-            Quaternion rotation = Quaternion.Euler(0, 0, Vector2.Angle(Vector2.up, transform.position - computer.transform.position));
+            yield return new WaitForSeconds(7.5f);
+            Quaternion rotation = Quaternion.identity;
+            if(position == "topRight")
+            {
+                rotation = Quaternion.Euler(0, 0, -150.255f);
+            }
+            else if (position == "botRight")
+            {
+                rotation = Quaternion.Euler(0, 0, 150.255f);
+            }
+            else
+            {
+                rotation = Quaternion.Euler(0, 0, Vector2.Angle(Vector2.up, transform.position - computer.transform.position) + 90);
+            }
+                
             Instantiate(projectilePrefab, transform.position, rotation);
         }
     }

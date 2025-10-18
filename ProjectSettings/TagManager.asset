@@ -8,6 +8,8 @@ TagManager:
   - Projectile
   - Enemy
   - AudioManager
+  - EnemySpawner
+  - Hacker Projectile
   layers:
   - Default
   - TransparentFX

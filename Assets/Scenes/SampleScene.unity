@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 405631220}
   m_Layer: 0
   m_Name: Enemy Spawner
-  m_TagString: Untagged
+  m_TagString: EnemySpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
   folderPrefab: {fileID: 9061689479172985375, guid: 2addb9c0a57f4604c9c01ba6a0ab8a9e, type: 3}
-  hackerPrefab: {fileID: 0}
+  hackerPrefab: {fileID: 1106759746159780519, guid: dd283dc3cd116054590dca5d3f444816, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

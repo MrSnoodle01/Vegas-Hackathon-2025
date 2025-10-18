@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a645de05f3948f4ba6afd6ca7f83faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hacker
-  projectilePrefab: {fileID: 599321968239743741, guid: a12418cfd2632f44887d9dfad5574935, type: 3}
+  projectilePrefab: {fileID: 325193236218283996, guid: 3703d12f71a775e459499cd2de0c2bf5, type: 3}
 --- !u!70 &5394960117062960789
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

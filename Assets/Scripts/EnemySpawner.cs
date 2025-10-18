@@ -44,7 +44,9 @@ public class EnemySpawner : MonoBehaviour
     {
         while (computerScript.health > 0)
         {
-            if(currentHackerPositions.Count < 4)
+            yield return new WaitForSeconds(5);
+
+            if (currentHackerPositions.Count < 4)
             {
                 int randomPosition = Random.Range(0, possibleHackerPositions.Length);
                 while (currentHackerPositions.Contains(possibleHackerPositions[randomPosition])){
@@ -57,9 +59,6 @@ public class EnemySpawner : MonoBehaviour
                 Hacker hackerScript = newHacker.GetComponent<Hacker>();
                 hackerScript.Init(possibleHackerPositions[randomPosition]);
             }
-
-            yield return new WaitForSeconds(5);
         }
     }
-
 }

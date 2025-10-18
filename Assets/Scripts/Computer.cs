@@ -15,5 +15,15 @@ public class Computer : MonoBehaviour
                 Destroy(gameObject);
             }
         }   
+
+        if(collision.gameObject.CompareTag("Hacker Projectile"))
+        {
+            //health -= 1f;
+            Destroy(collision.gameObject.transform.parent.gameObject);
+            if (health <= 0f)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

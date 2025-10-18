@@ -4,9 +4,11 @@ using static UnityEngine.GraphicsBuffer;
 
 public class HackerProjectile : MonoBehaviour
 {
+    public Animator animator;
     public float speed = 5f;
 
     private GameObject computer;
+    private string animationStateName = "Moving";
 
     private void Awake()
     {
@@ -16,6 +18,22 @@ public class HackerProjectile : MonoBehaviour
     private void Start()
     {
         StartCoroutine(deleteProjectile());
+        animator.Play(animationStateName, -1, Random.Range(0f, 0.9f));
+        if(transform.position.x < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, Vector2.Angle(Vector2.up, transform.position - computer.transform.position));
+        }
+        else
+        {
+            if(transform.position.y > 0)
+            {
+                transform.localRotation = Quaternion.Euler(0, 0, 90);
+            }
+            else
+            {
+                transform.localRotation = Quaternion.Euler(0, 0, -90);
+            }     
+        }       
     }
 
     void Update()
@@ -31,13 +49,13 @@ public class HackerProjectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Projectile"))
         {
-            Destroy(gameObject);
+            Destroy(gameObject.transform.parent.gameObject);
         }
     }
 
     IEnumerator deleteProjectile()
     {
-        yield return new WaitForSeconds(3f);
-        Destroy(gameObject);
+        yield return new WaitForSeconds(10f);
+        Destroy(gameObject.transform.parent);
     }
 }
