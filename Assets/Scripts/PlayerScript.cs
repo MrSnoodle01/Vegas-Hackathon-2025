@@ -7,6 +7,7 @@ public class PlayerScript : MonoBehaviour
     public InputActionAsset playerActions;
     public GameObject playerProjectile;
     public float speed = 5f;
+    public float attackCooldownTime = .3f;
 
     private InputAction moveAction;
     private InputAction attackAction;
@@ -44,7 +45,7 @@ public class PlayerScript : MonoBehaviour
 
     IEnumerator attackCooldown()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(attackCooldownTime);
         canAttack = true;
     }
 }
