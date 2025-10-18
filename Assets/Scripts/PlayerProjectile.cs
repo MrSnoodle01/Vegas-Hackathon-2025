@@ -25,6 +25,7 @@ public class PlayerProjectile : MonoBehaviour
     public void Init(Vector2 direction)
     {
         moveDirection = direction;
+        transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90);
     }
 
     IEnumerator deleteProjectile()

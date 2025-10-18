@@ -25,7 +25,8 @@ public class PlayerScript : MonoBehaviour
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
 
         transform.position += (Vector3)moveInput * Time.deltaTime * speed;
-        if(moveInput != Vector2.zero)
+        transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(moveInput.y, moveInput.x) * Mathf.Rad2Deg - 90);
+        if (moveInput != Vector2.zero)
         {
             prevMove = moveInput;
         }

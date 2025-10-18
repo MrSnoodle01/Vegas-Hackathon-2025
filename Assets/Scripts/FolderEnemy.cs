@@ -38,14 +38,16 @@ public class FolderEnemy : MonoBehaviour
         {
             moveToRandomPosition();
         }
+        if(collision.gameObject.CompareTag("Projectile"))
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void moveToRandomPosition()
     {
         Vector2 screenTopRight = mainCamera.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
         Vector2 screenBottomLeft = mainCamera.ScreenToWorldPoint(new Vector2(0, 0));
-        Debug.Log("top right" + screenTopRight);
-        Debug.Log("bottom left" + screenBottomLeft);
 
         Vector2 spawnPosition = Vector2.zero;
         int edgeToSpawn = Random.Range(0, 4);
