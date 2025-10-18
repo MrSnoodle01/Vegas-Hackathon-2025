@@ -1,14 +1,18 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerScript : MonoBehaviour
 {
     public InputActionAsset playerActions;
+    public GameObject playerProjectile;
     public float speed = 5f;
 
     private InputAction moveAction;
     private InputAction attackAction;
-   
+    private Vector2 prevMove = Vector2.zero;
+    private bool canAttack = true;
+
     void Start()
     {
         moveAction = playerActions.FindAction("Move");
@@ -17,6 +21,30 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
-        transform.position += (Vector3)moveAction.ReadValue<Vector2>() * Time.deltaTime * speed;
+        Vector2 moveInput = moveAction.ReadValue<Vector2>();
+
+        transform.position += (Vector3)moveInput * Time.deltaTime * speed;
+        if(moveInput != Vector2.zero)
+        {
+            prevMove = moveInput;
+        }
+
+        if (attackAction.triggered && canAttack && prevMove != Vector2.zero)
+        {   
+            canAttack = false;
+            StartCoroutine(attackCooldown());
+
+            // spawn projectile
+            Vector3 projDirection = new Vector3(transform.position.x, transform.position.y, -1);
+            GameObject proj = Instantiate(playerProjectile, projDirection, Quaternion.identity);
+            PlayerProjectile projScript = proj.GetComponent<PlayerProjectile>();
+            projScript.Init(prevMove);
+        }
+    }
+
+    IEnumerator attackCooldown()
+    {
+        yield return new WaitForSeconds(0.25f);
+        canAttack = true;
     }
 }
