@@ -13,11 +13,13 @@ public class PlayerScript : MonoBehaviour
     private InputAction attackAction;
     private Vector2 prevMove = Vector2.zero;
     private bool canAttack = true;
+    private AudioManager audioManager;
 
-    void Start()
+    private void Awake()
     {
         moveAction = playerActions.FindAction("Move");
         attackAction = playerActions.FindAction("Attack");
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
     }
 
     void Update()
@@ -25,14 +27,17 @@ public class PlayerScript : MonoBehaviour
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
 
         transform.position += (Vector3)moveInput * Time.deltaTime * speed;
-        transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(moveInput.y, moveInput.x) * Mathf.Rad2Deg - 90);
+        
         if (moveInput != Vector2.zero)
         {
+            transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(moveInput.y, moveInput.x) * Mathf.Rad2Deg - 90);
             prevMove = moveInput;
         }
 
         if (attackAction.triggered && canAttack && prevMove != Vector2.zero)
         {   
+            audioManager.playSFX(audioManager.shootClip);
+
             canAttack = false;
             StartCoroutine(attackCooldown());
 

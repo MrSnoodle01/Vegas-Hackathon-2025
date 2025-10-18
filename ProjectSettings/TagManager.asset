@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Computer
   - Projectile
+  - Enemy
+  - AudioManager
   layers:
   - Default
   - TransparentFX

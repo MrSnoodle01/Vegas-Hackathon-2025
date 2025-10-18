@@ -5,6 +5,15 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject folderPrefab;
+
+    private Computer computerScript;
+
+    private void Awake()
+    {
+        GameObject computer = GameObject.FindWithTag("Computer");
+        computerScript = computer.GetComponent<Computer>();
+    }
+
     void Start()
     {
         StartCoroutine(spawnEnemies());
@@ -12,9 +21,9 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator spawnEnemies() 
     {
-        for(int i = 0; i < 10; i++)
+        while(computerScript.health > 0)
         {
-            Instantiate(folderPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            Instantiate(folderPrefab, new Vector3(5, 5, 0), Quaternion.identity);
             yield return new WaitForSeconds(1);
         }
     }

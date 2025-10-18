@@ -9,6 +9,7 @@ public class FolderEnemy : MonoBehaviour
     private Transform target;
     private Camera mainCamera;
     private float spawnOffset = 1f;
+    private AudioManager audioManager;
 
     private void Awake()
     {
@@ -16,10 +17,10 @@ public class FolderEnemy : MonoBehaviour
 
         GameObject computer = GameObject.FindGameObjectWithTag("Computer");
         target = computer.transform;
-    }
 
-    void Start()
-    {
+        GameObject am = GameObject.FindGameObjectWithTag("AudioManager");
+        audioManager = am.GetComponent<AudioManager>();
+
         moveToRandomPosition();
     }
 
@@ -40,6 +41,7 @@ public class FolderEnemy : MonoBehaviour
         }
         if(collision.gameObject.CompareTag("Projectile"))
         {
+            audioManager.playSFX(audioManager.enemyDeathClip);
             Destroy(gameObject);
         }
     }
