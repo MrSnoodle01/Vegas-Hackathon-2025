@@ -134,6 +134,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FolderEnemy
   speed: 2.25
   deathAnimation: {fileID: 3788556158729777049, guid: 1b0dd9969cc1aab44abef6b7fdf09316, type: 3}
+  dualShotPowerup: {fileID: 6851083182663436987, guid: 2a6235a26963c4c458d7e6038a1840fe, type: 3}
+  autoFirePowerup: {fileID: 3042645273965787046, guid: b034a961cf40c9d469fbb1b65945de7c, type: 3}
+  piercePowerup: {fileID: 1950432181194105094, guid: d87786b3b05d4a84db6cf9f65081ed2f, type: 3}
 --- !u!60 &-715928277364220361
 PolygonCollider2D:
   m_ObjectHideFlags: 0

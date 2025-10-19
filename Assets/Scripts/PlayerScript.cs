@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +16,12 @@ public class PlayerScript : MonoBehaviour
     private bool canAttack = true;
     private AudioManager audioManager;
     private EnemySpawner enemySpawner;
+    private int dualShotCooldownTime = 0;
+    private bool hasDualShot = false;
+    private int pierceShotCooldownTime = 0; 
+    private bool hasPierceShot = false;
+    private int autofireCooldownTime= 0;
+    private bool hasAutofire = false;
 
     private void Awake()
     {
@@ -36,8 +43,8 @@ public class PlayerScript : MonoBehaviour
             prevMove = moveInput;
         }
 
-        if (attackAction.triggered && canAttack && prevMove != Vector2.zero)
-        {   
+        if ((attackAction.triggered && canAttack && prevMove != Vector2.zero && !hasAutofire) || (hasAutofire && canAttack))
+        {
             audioManager.playSFX(audioManager.shootClip);
 
             canAttack = false;
@@ -47,8 +54,84 @@ public class PlayerScript : MonoBehaviour
             Vector3 projDirection = new Vector3(transform.position.x, transform.position.y, -1);
             GameObject proj = Instantiate(playerProjectile, projDirection, Quaternion.identity);
             PlayerProjectile projScript = proj.GetComponent<PlayerProjectile>();
-            projScript.Init(prevMove);
+            projScript.Init(prevMove, hasPierceShot);
+
+            if (hasDualShot)
+            {
+                Vector3 projDirection2 = new Vector3(transform.position.x, transform.position.y, -1);
+                GameObject proj2 = Instantiate(playerProjectile, projDirection2, Quaternion.identity);
+                PlayerProjectile projScript2 = proj2.GetComponent<PlayerProjectile>();
+                projScript2.Init(prevMove * -1, hasPierceShot);
+            }
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        GameObject collisionObject = collision.gameObject;
+        if (collisionObject.CompareTag("Dual Shot"))
+        {
+            dualShotCooldownTime = 15;
+            if (!hasDualShot)
+            {
+                StartCoroutine(dualShotCooldown());
+            }
+            hasDualShot = true;
+            Destroy(collisionObject);
+        }
+        else if(collisionObject.CompareTag("Pierce Shot"))
+        {
+            pierceShotCooldownTime = 15;
+            if (!hasPierceShot)
+            {
+                StartCoroutine(pierceShotCooldown());
+            }
+            hasPierceShot = true;
+            Destroy(collisionObject);
+        }
+        else if (collisionObject.CompareTag("Autofire"))
+        {
+            autofireCooldownTime = 15;
+            if (!hasPierceShot)
+            {
+                StartCoroutine(autoFireCooldown());
+            }
+            hasAutofire = true;
+            Destroy(collisionObject);
+        }
+    }
+
+    IEnumerator autoFireCooldown()
+    {
+        while (autofireCooldownTime > 0)
+        {
+            yield return new WaitForSeconds(1);
+            autofireCooldownTime -= 1;
+        }
+        hasAutofire = false;
+        autofireCooldownTime = 0;
+    }
+
+    IEnumerator pierceShotCooldown()
+    {
+        while (pierceShotCooldownTime > 0)
+        {
+            yield return new WaitForSeconds(1);
+            pierceShotCooldownTime -= 1;
+        }
+        hasPierceShot = false;
+        pierceShotCooldownTime = 0;
+    }
+
+    IEnumerator dualShotCooldown()
+    {
+        while (dualShotCooldownTime > 0)
+        {
+            yield return new WaitForSeconds(1);
+            dualShotCooldownTime -= 1;
+        }
+        hasDualShot = false;
+        dualShotCooldownTime = 0;
     }
 
     IEnumerator attackCooldown()

@@ -28,7 +28,10 @@ public class Hacker : MonoBehaviour
         {
             audioManager.playSFX(audioManager.enemyDeathClip);
             enemySpawner.removeHackerPosition(position);
-            Destroy(collision.gameObject);
+            if (collision.gameObject.GetComponent<PlayerProjectile>().canPierece == false)
+            {
+                Destroy(collision.gameObject);
+            }
             Destroy(gameObject);
         }
     }

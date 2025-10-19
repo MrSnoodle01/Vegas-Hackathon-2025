@@ -4,6 +4,9 @@ public class FolderEnemy : MonoBehaviour
 {   
     public float speed = 5f;
     public GameObject deathAnimation;
+    public GameObject dualShotPowerup;
+    public GameObject autoFirePowerup;
+    public GameObject piercePowerup;
 
     private Transform target;
     private Camera mainCamera;
@@ -42,7 +45,28 @@ public class FolderEnemy : MonoBehaviour
             audioManager.playSFX(audioManager.enemyDeathClip);
 
             Instantiate(deathAnimation, transform.position, Quaternion.identity);
-            Destroy(collision.gameObject);
+            if(collision.gameObject.GetComponent<PlayerProjectile>().canPierece == false)
+            {
+                Destroy(collision.gameObject);
+            }
+
+            int spawnPowerup = Random.Range(0, 11); // 10% chance
+            if (spawnPowerup == 0)
+            {
+                int powerupToSpawn = Random.Range(0, 3);
+                if (powerupToSpawn == 0)
+                {
+                    Instantiate(dualShotPowerup, transform.position, Quaternion.identity);
+                }
+                else if (powerupToSpawn == 1)
+                {
+                    Instantiate(autoFirePowerup, transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(piercePowerup, transform.position, Quaternion.identity);
+                }
+            }
             Destroy(gameObject);
         }
     }

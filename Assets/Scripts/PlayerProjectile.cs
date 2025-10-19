@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerProjectile : MonoBehaviour
 {
     public float speed = 5f;
+    public bool canPierece = false;
 
     private Vector2 moveDirection = Vector2.zero;
     private EnemySpawner enemySpawner;
@@ -22,9 +23,10 @@ public class PlayerProjectile : MonoBehaviour
         }
     }
 
-    public void Init(Vector2 direction)
+    public void Init(Vector2 direction, bool hasPierce)
     {
         moveDirection = direction;
+        canPierece = hasPierce;
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90);
     }
 
