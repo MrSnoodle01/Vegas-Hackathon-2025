@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -715928277364220361}
   m_Layer: 0
   m_Name: File Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FolderEnemy
   speed: 2.5
-  deathAnimation: {fileID: 0}
+  deathAnimation: {fileID: 3788556158729777049, guid: 1b0dd9969cc1aab44abef6b7fdf09316, type: 3}
 --- !u!60 &-715928277364220361
 PolygonCollider2D:
   m_ObjectHideFlags: 0

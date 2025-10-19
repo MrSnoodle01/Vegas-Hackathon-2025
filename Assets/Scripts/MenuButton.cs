@@ -7,17 +7,18 @@ public class MenuButton : MonoBehaviour
     public InputActionAsset playerActions;
     private InputAction anyKey;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         anyKey = playerActions.FindAction("any");
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (anyKey.triggered)
         {
+            GameObject score = GameObject.Find("Score System");
+            ScoreSystem scoreSystem = score.GetComponent<ScoreSystem>();
+            scoreSystem.score = 0;
             SceneManager.LoadScene("Game");
         }
     }

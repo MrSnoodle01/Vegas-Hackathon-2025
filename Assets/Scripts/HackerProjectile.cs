@@ -52,6 +52,7 @@ public class HackerProjectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Projectile"))
         {
+            Destroy(collision.gameObject);
             Destroy(gameObject.transform.parent.gameObject);
         }
     }

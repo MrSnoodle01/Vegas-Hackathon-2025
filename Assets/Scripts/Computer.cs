@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Computer : MonoBehaviour
 {
@@ -8,20 +9,22 @@ public class Computer : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            //health -= 1f;
+            health -= 1f;
             Destroy(collision.gameObject);
             if (health <= 0f)
             {
+                SceneManager.LoadScene("Lose screen");
                 Destroy(gameObject);
             }
         }   
 
         if(collision.gameObject.CompareTag("Hacker Projectile"))
         {
-            //health -= 1f;
+            health -= 1f;
             Destroy(collision.gameObject.transform.parent.gameObject);
             if (health <= 0f)
             {
+                SceneManager.LoadScene("Lose screen");
                 Destroy(gameObject);
             }
         }

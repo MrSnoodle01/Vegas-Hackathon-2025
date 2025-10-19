@@ -39,17 +39,12 @@ public class FolderEnemy : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Computer"))
-        {
-            Destroy(gameObject);
-        }
         if(collision.gameObject.CompareTag("Projectile"))
         {
             audioManager.playSFX(audioManager.enemyDeathClip);
-            if(name != "File Enemy(Clone)")
-            {
-               Instantiate(deathAnimation, transform.position, Quaternion.identity);
-            }
+
+            Instantiate(deathAnimation, transform.position, Quaternion.identity);
+            Destroy(collision.gameObject);
             Destroy(gameObject);
         }
     }
