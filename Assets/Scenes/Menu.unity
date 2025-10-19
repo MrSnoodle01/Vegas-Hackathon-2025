@@ -560,6 +560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3d417244a5bd6e4b85c6544a3b88344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreSystem
+  score: 0
 --- !u!4 &1399534782
 Transform:
   m_ObjectHideFlags: 0
