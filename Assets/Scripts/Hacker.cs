@@ -38,16 +38,16 @@ public class Hacker : MonoBehaviour
         switch (newPosition)
         {
             case "botLeft":
-                transform.position = new Vector3(-7, -4, 0);
+                transform.position = new Vector3(-7, -3.5f, 0);
                 break;
             case "botRight":
-                transform.position = new Vector3(7, -4, 0);
+                transform.position = new Vector3(7, -3.5f, 0);
                 break;
             case "topLeft":
-                transform.position = new Vector3(-7, 4, 0);
+                transform.position = new Vector3(-7, 3.5f, 0);
                 break;
             case "topRight":
-                transform.position = new Vector3(7, 4, 0);
+                transform.position = new Vector3(7, 3.5f, 0);
                 break;
         }
     }

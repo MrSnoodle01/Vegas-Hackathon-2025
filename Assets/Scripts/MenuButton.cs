@@ -21,9 +21,4 @@ public class MenuButton : MonoBehaviour
             SceneManager.LoadScene("Game");
         }
     }
-
-    public void playGame()
-    {
-        SceneManager.LoadScene("Game");
-    }
 }

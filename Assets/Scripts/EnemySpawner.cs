@@ -31,6 +31,7 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         StartCoroutine(spawnFolderEnemies());
+        StartCoroutine(spawnHackerEnemies());
     }
 
     private void Update()
@@ -43,7 +44,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (timeElapsed > 15 && !hasSpawnedHackers){
             hasSpawnedHackers = true;
-            StartCoroutine(spawnHackerEnemies());
+            //StartCoroutine(spawnHackerEnemies());
         }
         if(timeElapsed > 30 && !hasSpawnedFiles)
         {
