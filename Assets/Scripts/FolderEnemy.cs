@@ -1,6 +1,4 @@
-using UnityEditor.UI;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class FolderEnemy : MonoBehaviour
 {   

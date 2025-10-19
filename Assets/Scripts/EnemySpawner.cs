@@ -1,10 +1,5 @@
-using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using TMPro.EditorUtilities;
-using UnityEditor.Build.Content;
-using UnityEditor.Timeline;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -36,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
         timeElapsed += Time.deltaTime;
-        if(timeElapsed > 30)
+        if(timeElapsed > 45)
         {
             gameSpeed += Time.deltaTime / 100f;
         }

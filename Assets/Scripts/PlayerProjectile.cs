@@ -1,16 +1,16 @@
 using System.Collections;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class PlayerProjectile : MonoBehaviour
 {
     public float speed = 5f;
 
     private Vector2 moveDirection = Vector2.zero;
+    private EnemySpawner enemySpawner;
 
     void Start()
     {
+        enemySpawner = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<EnemySpawner>();
         StartCoroutine(deleteProjectile());
     }
 
@@ -18,7 +18,7 @@ public class PlayerProjectile : MonoBehaviour
     {
         if (moveDirection != Vector2.zero)
         {
-            transform.position += (Vector3)(moveDirection * speed * Time.deltaTime);
+            transform.position += (Vector3)(moveDirection * speed * Time.deltaTime * enemySpawner.gameSpeed);
         }
     }
 
