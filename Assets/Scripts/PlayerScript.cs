@@ -14,19 +14,21 @@ public class PlayerScript : MonoBehaviour
     private Vector2 prevMove = Vector2.zero;
     private bool canAttack = true;
     private AudioManager audioManager;
+    private EnemySpawner enemySpawner;
 
     private void Awake()
     {
         moveAction = playerActions.FindAction("Move");
         attackAction = playerActions.FindAction("Attack");
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        enemySpawner = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<EnemySpawner>();
     }
 
     void Update()
     {
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
 
-        transform.position += (Vector3)moveInput * Time.deltaTime * speed;
+        transform.position += (Vector3)moveInput * Time.deltaTime * speed * enemySpawner.gameSpeed;
         
         if (moveInput != Vector2.zero)
         {
@@ -51,7 +53,7 @@ public class PlayerScript : MonoBehaviour
 
     IEnumerator attackCooldown()
     {
-        yield return new WaitForSeconds(attackCooldownTime);
+        yield return new WaitForSeconds(attackCooldownTime / enemySpawner.gameSpeed);
         canAttack = true;
     }
 }

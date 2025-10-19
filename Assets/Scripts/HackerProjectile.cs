@@ -9,10 +9,13 @@ public class HackerProjectile : MonoBehaviour
 
     private GameObject computer;
     private string animationStateName = "Moving";
+    private EnemySpawner enemySpawner;
 
     private void Awake()
     {
         computer = GameObject.FindWithTag("Computer");
+
+        enemySpawner = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<EnemySpawner>();
     }
 
     private void Start()
@@ -41,7 +44,7 @@ public class HackerProjectile : MonoBehaviour
         if (computer != null)
         {
             Vector3 direction = (computer.transform.position - transform.position).normalized;
-            transform.position += direction * speed * Time.deltaTime;
+            transform.position += direction * speed * enemySpawner.gameSpeed * Time.deltaTime;
         }
     }
 

@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FolderEnemy
   speed: 1.25
+  deathAnimation: {fileID: 3788556158729777049, guid: 1b0dd9969cc1aab44abef6b7fdf09316, type: 3}
 --- !u!50 &6083507578113744645
 Rigidbody2D:
   serializedVersion: 5

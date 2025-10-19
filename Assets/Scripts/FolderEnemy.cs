@@ -5,11 +5,13 @@ using UnityEngine.UIElements;
 public class FolderEnemy : MonoBehaviour
 {   
     public float speed = 5f;
+    public GameObject deathAnimation;
 
     private Transform target;
     private Camera mainCamera;
     private float spawnOffset = 1f;
     private AudioManager audioManager;
+    private EnemySpawner enemySpawner;
 
     private void Awake()
     {
@@ -21,6 +23,8 @@ public class FolderEnemy : MonoBehaviour
         GameObject am = GameObject.FindGameObjectWithTag("AudioManager");
         audioManager = am.GetComponent<AudioManager>();
 
+        enemySpawner = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<EnemySpawner>();
+
         moveToRandomPosition();
     }
 
@@ -29,7 +33,7 @@ public class FolderEnemy : MonoBehaviour
         if(target != null)
         {
             Vector3 direction = (target.position - transform.position).normalized;
-            transform.position += direction * speed * Time.deltaTime;
+            transform.position += direction * speed * enemySpawner.gameSpeed * Time.deltaTime;
         }
     }
     
@@ -37,11 +41,15 @@ public class FolderEnemy : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Computer"))
         {
-            moveToRandomPosition();
+            Destroy(gameObject);
         }
         if(collision.gameObject.CompareTag("Projectile"))
         {
             audioManager.playSFX(audioManager.enemyDeathClip);
+            if(name != "File Enemy(Clone)")
+            {
+               Instantiate(deathAnimation, transform.position, Quaternion.identity);
+            }
             Destroy(gameObject);
         }
     }
