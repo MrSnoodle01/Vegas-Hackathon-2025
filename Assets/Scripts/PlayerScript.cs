@@ -105,7 +105,7 @@ public class PlayerScript : MonoBehaviour
     {
         while (autofireCooldownTime > 0)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSecondsRealtime(1);
             autofireCooldownTime -= 1;
         }
         hasAutofire = false;
@@ -116,7 +116,7 @@ public class PlayerScript : MonoBehaviour
     {
         while (pierceShotCooldownTime > 0)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSecondsRealtime(1);
             pierceShotCooldownTime -= 1;
         }
         hasPierceShot = false;
@@ -127,7 +127,7 @@ public class PlayerScript : MonoBehaviour
     {
         while (dualShotCooldownTime > 0)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSecondsRealtime(1);
             dualShotCooldownTime -= 1;
         }
         hasDualShot = false;
