@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     [Header("---------- Audio  Clip ----------")]
     public AudioClip shootClip;
     public AudioClip enemyDeathClip;
+    public AudioClip computerHurtClip;
     public AudioClip music;
 
     private void Awake()

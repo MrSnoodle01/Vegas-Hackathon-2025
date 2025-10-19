@@ -179,6 +179,7 @@ MonoBehaviour:
   musicSource: {fileID: 8249268457126058245}
   shootClip: {fileID: 8300000, guid: 1abb9732ad70121499ff1554ff76d5b6, type: 3}
   enemyDeathClip: {fileID: 8300000, guid: 9f79d759e08b9b64db080bd318582c0f, type: 3}
+  computerHurtClip: {fileID: 8300000, guid: 73dad77685ad7f245a328b263f8b4844, type: 3}
   music: {fileID: 8300000, guid: 840013bdd716c1f4a9687a3342a81472, type: 3}
 --- !u!1 &9210885349819867495
 GameObject:
@@ -225,7 +226,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
